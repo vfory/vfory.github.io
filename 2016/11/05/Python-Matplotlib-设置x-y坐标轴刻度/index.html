@@ -1,0 +1,791 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="刻度设置参考文档：xticks 命令yticks 命令以xticks为例：
+matplotlib.pyplot.xticks(args, *kwargs)
+获取或者设置当前刻度位置和文本的 x-limits:
+return locs, labels where locs is an array of tick locations andlabels is an array of tick labe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python Matplotlib 设置x/y坐标轴刻度">
+<meta property="og:url" content="http://dvmn.com/2016/11/05/Python-Matplotlib-设置x-y坐标轴刻度/index.html">
+<meta property="og:site_name" content="重力在线 OnGra">
+<meta property="og:description" content="刻度设置参考文档：xticks 命令yticks 命令以xticks为例：
+matplotlib.pyplot.xticks(args, *kwargs)
+获取或者设置当前刻度位置和文本的 x-limits:
+return locs, labels where locs is an array of tick locations andlabels is an array of tick labe">
+<meta property="og:updated_time" content="2016-11-05T14:15:55.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python Matplotlib 设置x/y坐标轴刻度">
+<meta name="twitter:description" content="刻度设置参考文档：xticks 命令yticks 命令以xticks为例：
+matplotlib.pyplot.xticks(args, *kwargs)
+获取或者设置当前刻度位置和文本的 x-limits:
+return locs, labels where locs is an array of tick locations andlabels is an array of tick labe">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://dvmn.com/2016/11/05/Python-Matplotlib-设置x-y坐标轴刻度/"/>
+
+  <title> Python Matplotlib 设置x/y坐标轴刻度 | 重力在线 OnGra </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">重力在线 OnGra</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Gravity calculating online step by step</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+     <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+ 
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+ 
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python Matplotlib 设置x/y坐标轴刻度
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-05T22:14:45+08:00" content="2016-11-05">
+              2016-11-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>刻度设置<br>参考文档：<br>xticks 命令<br>yticks 命令<br>以xticks为例：</p>
+<p>matplotlib.pyplot.xticks(<em>args, *</em>kwargs)</p>
+<p>获取或者设置当前刻度位置和文本的 x-limits:</p>
+<h1 id="return-locs-labels-where-locs-is-an-array-of-tick-locations-and"><a href="#return-locs-labels-where-locs-is-an-array-of-tick-locations-and" class="headerlink" title="return locs, labels where locs is an array of tick locations and"></a>return locs, labels where locs is an array of tick locations and</h1><h1 id="labels-is-an-array-of-tick-labels"><a href="#labels-is-an-array-of-tick-labels" class="headerlink" title="labels is an array of tick labels."></a>labels is an array of tick labels.</h1><p>locs, labels = xticks()</p>
+<h1 id="set-the-locations-of-the-xticks"><a href="#set-the-locations-of-the-xticks" class="headerlink" title="set the locations of the xticks"></a>set the locations of the xticks</h1><p>xticks( arange(6) )</p>
+<h1 id="set-the-locations-and-labels-of-the-xticks"><a href="#set-the-locations-and-labels-of-the-xticks" class="headerlink" title="set the locations and labels of the xticks"></a>set the locations and labels of the xticks</h1><p>xticks( arange(5), (‘Tom’, ‘Dick’, ‘Harry’, ‘Sally’, ‘Sue’) )</p>
+<p>关键字 args ，如果有其他的参数则是 Text 属性。例如，旋转长的文本标注。</p>
+<p>xticks( arange(12), calendar.month_name[1:13], rotation=17 )</p>
+<p>参考文档<br>Tick container<br>Axis containers<br>matplotlib.axis.Axis对象负责刻度线、格网线、刻度标注和坐标轴标注的绘制工作。你可以设置y轴的左右刻度或者x轴的上下刻度。 Axis 也存储了用于自动调整，移动和放缩的数据和视觉间隔；同时 Locator 和Formatter 对象控制着刻度的位置以及以怎样的字符串呈现。</p>
+<p>每一个 Axis 对象包含一个 label 属性以及主刻度和小刻度的列表。刻度是 XTick 和 YTick 对象，其包含着实际线和文本元素，分别代表刻度和注释。因为刻度是根据需要动态创建的，你应该通过获取方法get_major_ticks() 和 get_minor_ticks()以获取主刻度和小刻度的列表。尽管刻度包含了所有的元素，并且将会在下面代码中涵盖，Axis 方法包含了获取方法以返回刻度线、刻度标注和刻度位置等等：</p>
+<p>In [285]: axis = ax.xaxis</p>
+<p>In [286]: axis.get_ticklocs()<br>Out[286]: array([ 0.,  1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,  9.])</p>
+<p>In [287]: axis.get_ticklabels()<br>Out[287]: 10 Text major ticklabel objects&gt;</p>
+<h1 id="note-there-are-twice-as-many-ticklines-as-labels-because-by"><a href="#note-there-are-twice-as-many-ticklines-as-labels-because-by" class="headerlink" title="note there are twice as many ticklines as labels because by"></a>note there are twice as many ticklines as labels because by</h1><h1 id="default-there-are-tick-lines-at-the-top-and-bottom-but-only-tick"><a href="#default-there-are-tick-lines-at-the-top-and-bottom-but-only-tick" class="headerlink" title="default there are tick lines at the top and bottom but only tick"></a>default there are tick lines at the top and bottom but only tick</h1><h1 id="labels-below-the-xaxis-this-can-be-customized"><a href="#labels-below-the-xaxis-this-can-be-customized" class="headerlink" title="labels below the xaxis; this can be customized"></a>labels below the xaxis; this can be customized</h1><p>In [288]: axis.get_ticklines()<br>Out[288]: 20 Line2D ticklines objects&gt;</p>
+<h1 id="by-default-you-get-the-major-ticks-back"><a href="#by-default-you-get-the-major-ticks-back" class="headerlink" title="by default you get the major ticks back"></a>by default you get the major ticks back</h1><p>In [291]: axis.get_ticklines()<br>Out[291]: 20 Line2D ticklines objects&gt;</p>
+<h1 id="but-you-can-also-ask-for-the-minor-ticks"><a href="#but-you-can-also-ask-for-the-minor-ticks" class="headerlink" title="but you can also ask for the minor ticks"></a>but you can also ask for the minor ticks</h1><p>In [292]: axis.get_ticklines(minor=True)<br>Out[292]: 0 Line2D ticklines objects&gt;</p>
+<p>Tick locating and formatting<br>该模块包括许多类以支持完整的刻度位置和格式的配置。尽管 locators 与主刻度或小刻度没有关系，他们经由 Axis 类使用来支持主刻度和小刻度位置和格式设置。一般情况下，刻度位置和格式均已提供，通常也是最常用的形式。</p>
+<p>默认格式<br>当x轴数据绘制在一个大间隔的一个小的集中区域时，默认的格式将会生效。为了减少刻度标注重叠的可能性，刻度被标注在固定间隔之间的空白区域。比如：</p>
+<p>ax.plot(np.arange(2000, 2010), range(10))</p>
+<p>表现形式如下：</p>
+<p>【Python <wbr>Matplotlib】设置x/y坐标轴刻度</p>
+<p>刻度仅标注了 0-9 以及一个间隔 +2e3 。如果不希望这种形式，可以关闭默认格式设置中的间隔标注的使用。</p>
+<p>ax.get_xaxis().get_major_formatter().set_useOffset(False)<br>【Python <wbr>Matplotlib】设置x/y坐标轴刻度</p>
+<p>设置 rcParam axes.formatter.useoffset=False 以在全局上关闭，或者设置不同的格式。</p>
+<p>刻度位置<br>Locator 类是所有刻度 Locators 的基类。 locators 负责根据数据的范围自动调整视觉间隔，以及刻度位置的选择。 MultipleLocator 是一种有用的半自动的刻度 Locator。 你可以通过基类进行初始化设置等等。</p>
+<p>Locator 子类定义如下：</p>
+<p>NullLocator    No ticks<br>FixedLocator    Tick locations are fixed<br>IndexLocator    locator for index plots (e.g., where x = range(len(y)))<br>LinearLocator    evenly spaced ticks from min to max<br>LogLocator    logarithmically ticks from min to max<br>SymmetricalLogLocator    locator for use with with the symlog norm, works like the LogLocator for the part outside of the threshold and add 0 if inside the limits<br>MultipleLocator    ticks and range are a multiple of base;either integer or float<br>OldAutoLocator    choose a MultipleLocator and dyamically reassign it for intelligent ticking during navigation<br>MaxNLocator    finds up to a max number of ticks at nice locations<br>AutoLocator    MaxNLocator with simple defaults. This is the default tick locator for most plotting.<br>AutoMinorLocator    locator for minor ticks when the axis is linear and the major ticks are uniformly spaced. It subdivides the major tick interval into a specified number of minor intervals, defaulting to 4 or 5 depending on the major interval.<br>你可以继承 Locator 定义自己的 locator。 你必须重写 <strong>_call</strong> 方法，该方法返回位置的序列，你可能也想重写 autoscale 方法以根据数据的范围设置视觉间隔。</p>
+<p>如果你想重写默认的locator，使用上面或常用的locator任何一个, 将其传给 x 或 y axis 对象。相关的方法如下：</p>
+<p>ax.xaxis.set_major_locator( xmajorLocator )<br>ax.xaxis.set_minor_locator( xminorLocator )<br>ax.yaxis.set_major_locator( ymajorLocator )<br>ax.yaxis.set_minor_locator( yminorLocator )</p>
+<p>刻度格式<br>刻度格式由 Formatter 继承来的类控制。 formatter仅仅作用于单个刻度值并且返回轴的字符串。<br>相关的子类请参考官方文档。</p>
+<p>同样也可以通过重写 <strong>all</strong> 方法来继承 Formatter 基类以设定自己的 formatter。</p>
+<p>为了控制主刻度或小刻度标注的格式，使用下面任一方法：</p>
+<p>ax.xaxis.set_major_formatter( xmajorFormatter )<br>ax.xaxis.set_minor_formatter( xminorFormatter )<br>ax.yaxis.set_major_formatter( ymajorFormatter )<br>ax.yaxis.set_minor_formatter( yminorFormatter )</p>
+<p>设置刻度标注<br>相关文档：</p>
+<p>相关文档</p>
+<p>set_xticklabels()</p>
+<p>set_yticklabels()</p>
+<p>原型举例：</p>
+<p>set_xticklabels(labels, fontdict=None, minor=False, **kwargs)</p>
+<p>综合举例（1）如下：</p>
+<p>设置指定位置的标注更改为其他的标注：</p>
+<p>…<br>plt.xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi],<br>          [r’$-\pi$’, r’$-\pi/2$’, r’$0$’, r’$+\pi/2$’, r’$+\pi$’])</p>
+<p>plt.yticks([-1, 0, +1],<br>          [r’$-1$’, r’$0$’, r’$+1$’])<br>…</p>
+<p>综合举例（2）如下：</p>
+<p>设置坐标轴主刻度和次刻度。</p>
+<p>#!/usr/bin/env python</p>
+<p>#-<em>- coding: utf-8 -</em>- </p>
+<p>#—————————————————</p>
+<p>#演示MatPlotLib中设置坐标轴主刻度标签和次刻度标签.</p>
+<p>#对于次刻度显示,如果要使用默认设置只要matplotlib.pyplot.minorticks_on()</p>
+<p>#—————————————————</p>
+<p>import numpy as np<br>import matplotlib.pyplot as plt<br>from matplotlib.ticker import MultipleLocator, FormatStrFormatter</p>
+<p>#—————————————————<br>xmajorLocator   = MultipleLocator(20) #将x主刻度标签设置为20的倍数<br>xmajorFormatter = FormatStrFormatter(‘%5.1f’) #设置x轴标签文本的格式<br>xminorLocator   = MultipleLocator(5) #将x轴次刻度标签设置为5的倍数</p>
+<p>ymajorLocator   = MultipleLocator(0.5) #将y轴主刻度标签设置为0.5的倍数<br>ymajorFormatter = FormatStrFormatter(‘%1.1f’) #设置y轴标签文本的格式<br>yminorLocator   = MultipleLocator(0.1) #将此y轴次刻度标签设置为0.1的倍数</p>
+<p>t = np.arange(0.0, 100.0, 1)<br>s = np.sin(0.1<em>np.pi</em>t)<em>np.exp(-t</em>0.01)</p>
+<p>ax = plt.subplot(111) #注意:一般都在ax中设置,不再plot中设置<br>plt.plot(t,s,’–r*’)</p>
+<p>#设置主刻度标签的位置,标签文本的格式<br>ax.xaxis.set_major_locator(xmajorLocator)<br>ax.xaxis.set_major_formatter(xmajorFormatter)</p>
+<p>ax.yaxis.set_major_locator(ymajorLocator)<br>ax.yaxis.set_major_formatter(ymajorFormatter)</p>
+<p>#显示次刻度标签的位置,没有标签文本<br>ax.xaxis.set_minor_locator(xminorLocator)<br>ax.yaxis.set_minor_locator(yminorLocator)</p>
+<p>ax.xaxis.grid(True, which=’major’) #x坐标轴的网格使用主刻度<br>ax.yaxis.grid(True, which=’minor’) #y坐标轴的网格使用次刻度</p>
+<p>plt.show()</p>
+<p>##########################################################</p>
+<p>图像形式如下：</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您的支持将激励我们前行！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="微信二维码稍后更新" alt="Yang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="支付宝付款二维码稍后更新" alt="Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/03/一台电脑上的git同时使用两个github账户/" rel="next" title="一台电脑上的git同时使用两个github账户">
+                <i class="fa fa-chevron-left"></i> 一台电脑上的git同时使用两个github账户
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Yang" />
+          <p class="site-author-name" itemprop="name">Yang</p>
+          <p class="site-description motion-element" itemprop="description">重力在线分布式并行计算服务系统</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#return-locs-labels-where-locs-is-an-array-of-tick-locations-and"><span class="nav-number">1.</span> <span class="nav-text">return locs, labels where locs is an array of tick locations and</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#labels-is-an-array-of-tick-labels"><span class="nav-number">2.</span> <span class="nav-text">labels is an array of tick labels.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#set-the-locations-of-the-xticks"><span class="nav-number">3.</span> <span class="nav-text">set the locations of the xticks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#set-the-locations-and-labels-of-the-xticks"><span class="nav-number">4.</span> <span class="nav-text">set the locations and labels of the xticks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#note-there-are-twice-as-many-ticklines-as-labels-because-by"><span class="nav-number">5.</span> <span class="nav-text">note there are twice as many ticklines as labels because by</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#default-there-are-tick-lines-at-the-top-and-bottom-but-only-tick"><span class="nav-number">6.</span> <span class="nav-text">default there are tick lines at the top and bottom but only tick</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#labels-below-the-xaxis-this-can-be-customized"><span class="nav-number">7.</span> <span class="nav-text">labels below the xaxis; this can be customized</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#by-default-you-get-the-major-ticks-back"><span class="nav-number">8.</span> <span class="nav-text">by default you get the major ticks back</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#but-you-can-also-ask-for-the-minor-ticks"><span class="nav-number">9.</span> <span class="nav-text">but you can also ask for the minor ticks</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

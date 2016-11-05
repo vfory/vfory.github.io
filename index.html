@@ -388,6 +388,162 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/05/Python-Matplotlib-设置x-y坐标轴刻度/" itemprop="url">
+                  Python Matplotlib 设置x/y坐标轴刻度
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-05T22:14:45+08:00" content="2016-11-05">
+              2016-11-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>刻度设置<br>参考文档：<br>xticks 命令<br>yticks 命令<br>以xticks为例：</p>
+<p>matplotlib.pyplot.xticks(<em>args, *</em>kwargs)</p>
+<p>获取或者设置当前刻度位置和文本的 x-limits:</p>
+<h1 id="return-locs-labels-where-locs-is-an-array-of-tick-locations-and"><a href="#return-locs-labels-where-locs-is-an-array-of-tick-locations-and" class="headerlink" title="return locs, labels where locs is an array of tick locations and"></a>return locs, labels where locs is an array of tick locations and</h1><h1 id="labels-is-an-array-of-tick-labels"><a href="#labels-is-an-array-of-tick-labels" class="headerlink" title="labels is an array of tick labels."></a>labels is an array of tick labels.</h1><p>locs, labels = xticks()</p>
+<h1 id="set-the-locations-of-the-xticks"><a href="#set-the-locations-of-the-xticks" class="headerlink" title="set the locations of the xticks"></a>set the locations of the xticks</h1><p>xticks( arange(6) )</p>
+<h1 id="set-the-locations-and-labels-of-the-xticks"><a href="#set-the-locations-and-labels-of-the-xticks" class="headerlink" title="set the locations and labels of the xticks"></a>set the locations and labels of the xticks</h1><p>xticks( arange(5), (‘Tom’, ‘Dick’, ‘Harry’, ‘Sally’, ‘Sue’) )</p>
+<p>关键字 args ，如果有其他的参数则是 Text 属性。例如，旋转长的文本标注。</p>
+<p>xticks( arange(12), calendar.month_name[1:13], rotation=17 )</p>
+<p>参考文档<br>Tick container<br>Axis containers<br>matplotlib.axis.Axis对象负责刻度线、格网线、刻度标注和坐标轴标注的绘制工作。你可以设置y轴的左右刻度或者x轴的上下刻度。 Axis 也存储了用于自动调整，移动和放缩的数据和视觉间隔；同时 Locator 和Formatter 对象控制着刻度的位置以及以怎样的字符串呈现。</p>
+<p>每一个 Axis 对象包含一个 label 属性以及主刻度和小刻度的列表。刻度是 XTick 和 YTick 对象，其包含着实际线和文本元素，分别代表刻度和注释。因为刻度是根据需要动态创建的，你应该通过获取方法get_major_ticks() 和 get_minor_ticks()以获取主刻度和小刻度的列表。尽管刻度包含了所有的元素，并且将会在下面代码中涵盖，Axis 方法包含了获取方法以返回刻度线、刻度标注和刻度位置等等：</p>
+<p>In [285]: axis = ax.xaxis</p>
+<p>In [286]: axis.get_ticklocs()<br>Out[286]: array([ 0.,  1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,  9.])</p>
+<p>In [287]: axis.get_ticklabels()<br>Out[287]: 10 Text major ticklabel objects&gt;</p>
+<h1 id="note-there-are-twice-as-many-ticklines-as-labels-because-by"><a href="#note-there-are-twice-as-many-ticklines-as-labels-because-by" class="headerlink" title="note there are twice as many ticklines as labels because by"></a>note there are twice as many ticklines as labels because by</h1><h1 id="default-there-are-tick-lines-at-the-top-and-bottom-but-only-tick"><a href="#default-there-are-tick-lines-at-the-top-and-bottom-but-only-tick" class="headerlink" title="default there are tick lines at the top and bottom but only tick"></a>default there are tick lines at the top and bottom but only tick</h1><h1 id="labels-below-the-xaxis-this-can-be-customized"><a href="#labels-below-the-xaxis-this-can-be-customized" class="headerlink" title="labels below the xaxis; this can be customized"></a>labels below the xaxis; this can be customized</h1><p>In [288]: axis.get_ticklines()<br>Out[288]: 20 Line2D ticklines objects&gt;</p>
+<h1 id="by-default-you-get-the-major-ticks-back"><a href="#by-default-you-get-the-major-ticks-back" class="headerlink" title="by default you get the major ticks back"></a>by default you get the major ticks back</h1><p>In [291]: axis.get_ticklines()<br>Out[291]: 20 Line2D ticklines objects&gt;</p>
+<h1 id="but-you-can-also-ask-for-the-minor-ticks"><a href="#but-you-can-also-ask-for-the-minor-ticks" class="headerlink" title="but you can also ask for the minor ticks"></a>but you can also ask for the minor ticks</h1><p>In [292]: axis.get_ticklines(minor=True)<br>Out[292]: 0 Line2D ticklines objects&gt;</p>
+<p>Tick locating and formatting<br>该模块包括许多类以支持完整的刻度位置和格式的配置。尽管 locators 与主刻度或小刻度没有关系，他们经由 Axis 类使用来支持主刻度和小刻度位置和格式设置。一般情况下，刻度位置和格式均已提供，通常也是最常用的形式。</p>
+<p>默认格式<br>当x轴数据绘制在一个大间隔的一个小的集中区域时，默认的格式将会生效。为了减少刻度标注重叠的可能性，刻度被标注在固定间隔之间的空白区域。比如：</p>
+<p>ax.plot(np.arange(2000, 2010), range(10))</p>
+<p>表现形式如下：</p>
+<p>【Python <wbr>Matplotlib】设置x/y坐标轴刻度</p>
+<p>刻度仅标注了 0-9 以及一个间隔 +2e3 。如果不希望这种形式，可以关闭默认格式设置中的间隔标注的使用。</p>
+<p>ax.get_xaxis().get_major_formatter().set_useOffset(False)<br>【Python <wbr>Matplotlib】设置x/y坐标轴刻度</p>
+<p>设置 rcParam axes.formatter.useoffset=False 以在全局上关闭，或者设置不同的格式。</p>
+<p>刻度位置<br>Locator 类是所有刻度 Locators 的基类。 locators 负责根据数据的范围自动调整视觉间隔，以及刻度位置的选择。 MultipleLocator 是一种有用的半自动的刻度 Locator。 你可以通过基类进行初始化设置等等。</p>
+<p>Locator 子类定义如下：</p>
+<p>NullLocator    No ticks<br>FixedLocator    Tick locations are fixed<br>IndexLocator    locator for index plots (e.g., where x = range(len(y)))<br>LinearLocator    evenly spaced ticks from min to max<br>LogLocator    logarithmically ticks from min to max<br>SymmetricalLogLocator    locator for use with with the symlog norm, works like the LogLocator for the part outside of the threshold and add 0 if inside the limits<br>MultipleLocator    ticks and range are a multiple of base;either integer or float<br>OldAutoLocator    choose a MultipleLocator and dyamically reassign it for intelligent ticking during navigation<br>MaxNLocator    finds up to a max number of ticks at nice locations<br>AutoLocator    MaxNLocator with simple defaults. This is the default tick locator for most plotting.<br>AutoMinorLocator    locator for minor ticks when the axis is linear and the major ticks are uniformly spaced. It subdivides the major tick interval into a specified number of minor intervals, defaulting to 4 or 5 depending on the major interval.<br>你可以继承 Locator 定义自己的 locator。 你必须重写 <strong>_call</strong> 方法，该方法返回位置的序列，你可能也想重写 autoscale 方法以根据数据的范围设置视觉间隔。</p>
+<p>如果你想重写默认的locator，使用上面或常用的locator任何一个, 将其传给 x 或 y axis 对象。相关的方法如下：</p>
+<p>ax.xaxis.set_major_locator( xmajorLocator )<br>ax.xaxis.set_minor_locator( xminorLocator )<br>ax.yaxis.set_major_locator( ymajorLocator )<br>ax.yaxis.set_minor_locator( yminorLocator )</p>
+<p>刻度格式<br>刻度格式由 Formatter 继承来的类控制。 formatter仅仅作用于单个刻度值并且返回轴的字符串。<br>相关的子类请参考官方文档。</p>
+<p>同样也可以通过重写 <strong>all</strong> 方法来继承 Formatter 基类以设定自己的 formatter。</p>
+<p>为了控制主刻度或小刻度标注的格式，使用下面任一方法：</p>
+<p>ax.xaxis.set_major_formatter( xmajorFormatter )<br>ax.xaxis.set_minor_formatter( xminorFormatter )<br>ax.yaxis.set_major_formatter( ymajorFormatter )<br>ax.yaxis.set_minor_formatter( yminorFormatter )</p>
+<p>设置刻度标注<br>相关文档：</p>
+<p>相关文档</p>
+<p>set_xticklabels()</p>
+<p>set_yticklabels()</p>
+<p>原型举例：</p>
+<p>set_xticklabels(labels, fontdict=None, minor=False, **kwargs)</p>
+<p>综合举例（1）如下：</p>
+<p>设置指定位置的标注更改为其他的标注：</p>
+<p>…<br>plt.xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi],<br>          [r’$-\pi$’, r’$-\pi/2$’, r’$0$’, r’$+\pi/2$’, r’$+\pi$’])</p>
+<p>plt.yticks([-1, 0, +1],<br>          [r’$-1$’, r’$0$’, r’$+1$’])<br>…</p>
+<p>综合举例（2）如下：</p>
+<p>设置坐标轴主刻度和次刻度。</p>
+<p>#!/usr/bin/env python</p>
+<p>#-<em>- coding: utf-8 -</em>- </p>
+<p>#—————————————————</p>
+<p>#演示MatPlotLib中设置坐标轴主刻度标签和次刻度标签.</p>
+<p>#对于次刻度显示,如果要使用默认设置只要matplotlib.pyplot.minorticks_on()</p>
+<p>#—————————————————</p>
+<p>import numpy as np<br>import matplotlib.pyplot as plt<br>from matplotlib.ticker import MultipleLocator, FormatStrFormatter</p>
+<p>#—————————————————<br>xmajorLocator   = MultipleLocator(20) #将x主刻度标签设置为20的倍数<br>xmajorFormatter = FormatStrFormatter(‘%5.1f’) #设置x轴标签文本的格式<br>xminorLocator   = MultipleLocator(5) #将x轴次刻度标签设置为5的倍数</p>
+<p>ymajorLocator   = MultipleLocator(0.5) #将y轴主刻度标签设置为0.5的倍数<br>ymajorFormatter = FormatStrFormatter(‘%1.1f’) #设置y轴标签文本的格式<br>yminorLocator   = MultipleLocator(0.1) #将此y轴次刻度标签设置为0.1的倍数</p>
+<p>t = np.arange(0.0, 100.0, 1)<br>s = np.sin(0.1<em>np.pi</em>t)<em>np.exp(-t</em>0.01)</p>
+<p>ax = plt.subplot(111) #注意:一般都在ax中设置,不再plot中设置<br>plt.plot(t,s,’–r*’)</p>
+<p>#设置主刻度标签的位置,标签文本的格式<br>ax.xaxis.set_major_locator(xmajorLocator)<br>ax.xaxis.set_major_formatter(xmajorFormatter)</p>
+<p>ax.yaxis.set_major_locator(ymajorLocator)<br>ax.yaxis.set_major_formatter(ymajorFormatter)</p>
+<p>#显示次刻度标签的位置,没有标签文本<br>ax.xaxis.set_minor_locator(xminorLocator)<br>ax.yaxis.set_minor_locator(yminorLocator)</p>
+<p>ax.xaxis.grid(True, which=’major’) #x坐标轴的网格使用主刻度<br>ax.yaxis.grid(True, which=’minor’) #y坐标轴的网格使用次刻度</p>
+<p>plt.show()</p>
+<p>##########################################################</p>
+<p>图像形式如下：</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/03/一台电脑上的git同时使用两个github账户/" itemprop="url">
                   一台电脑上的git同时使用两个github账户
                 </a>
@@ -1357,103 +1513,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/25/ubuntu-SSH-连接、远程上传下载文件/" itemprop="url">
-                  ubuntu SSH 连接、远程上传下载文件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-25T16:05:12+08:00" content="2016-08-25">
-              2016-08-25
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>安装 SSH(Secure Shell) 服务以提供远程管理服务<br>sudo apt-get install ssh </p>
-<p>SSH 远程登入 Ubuntu 机<br>ssh username@192.168.0.1 </p>
-<p>将 文件/文件夹 从远程 Ubuntu 机拷至本地(scp)<br>scp -r username@192.168.0.1:/home/username/remotefile.txt . </p>
-<p>将 文件/文件夹 从本地拷至远程 Ubuntu 机(scp)<br>scp -r localfile.txt username@192.168.0.1:/home/username/ </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1499,7 +1558,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
