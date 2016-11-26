@@ -84,15 +84,19 @@
 
 
 
-<meta name="description" content="重力在线分布式并行计算服务系统">
-<meta property="og:type" content="website">
-<meta property="og:title" content="重力在线 OnGra">
-<meta property="og:url" content="http://dvmn.com/archives/2016/page/2/index.html">
+<meta name="description" content="github使用SSH与客户端连接。如果是单用户（first），生成密钥对后，将公钥保存至github， 每次连接时SSH客户端发送本地私钥（默认~/.ssh/id_rsa）到服务端验证。 单用户情况下，连接的服务器上保存的公钥和发送的私钥自然是配对的。
+但是如果是多用户（first，second），我们在连接到second的帐号时， second保存的是自己的公钥，但是SSH客户端依然发送默认私">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多个github帐号的SSH key切换">
+<meta property="og:url" content="http://dvmn.com/2016/10/03/未命名文件夹/多个github帐号的SSH-key切换/index.html">
 <meta property="og:site_name" content="重力在线 OnGra">
-<meta property="og:description" content="重力在线分布式并行计算服务系统">
+<meta property="og:description" content="github使用SSH与客户端连接。如果是单用户（first），生成密钥对后，将公钥保存至github， 每次连接时SSH客户端发送本地私钥（默认~/.ssh/id_rsa）到服务端验证。 单用户情况下，连接的服务器上保存的公钥和发送的私钥自然是配对的。
+但是如果是多用户（first，second），我们在连接到second的帐号时， second保存的是自己的公钥，但是SSH客户端依然发送默认私">
+<meta property="og:updated_time" content="2016-10-03T09:16:12.157Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="重力在线 OnGra">
-<meta name="twitter:description" content="重力在线分布式并行计算服务系统">
+<meta name="twitter:title" content="多个github帐号的SSH key切换">
+<meta name="twitter:description" content="github使用SSH与客户端连接。如果是单用户（first），生成密钥对后，将公钥保存至github， 每次连接时SSH客户端发送本地私钥（默认~/.ssh/id_rsa）到服务端验证。 单用户情况下，连接的服务器上保存的公钥和发送的私钥自然是配对的。
+但是如果是多用户（first，second），我们在连接到second的帐号时， second保存的是自己的公钥，但是SSH客户端依然发送默认私">
 
 
 
@@ -113,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://dvmn.com/archives/2016/page/2/"/>
+  <link rel="canonical" href="http://dvmn.com/2016/10/03/未命名文件夹/多个github帐号的SSH-key切换/"/>
 
-  <title> 归档 | 重力在线 OnGra </title>
+  <title> 多个github帐号的SSH key切换 | 重力在线 OnGra </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,7 +140,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -364,255 +368,151 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 16 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                多个github帐号的SSH key切换
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-03T17:11:39+08:00" content="2016-10-03">
+              2016-10-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <p>github使用SSH与客户端连接。如果是单用户（first），生成密钥对后，将公钥保存至github， 每次连接时SSH客户端发送本地私钥（默认~/.ssh/id_rsa）到服务端验证。 单用户情况下，连接的服务器上保存的公钥和发送的私钥自然是配对的。</p>
+<p>但是如果是多用户（first，second），我们在连接到second的帐号时， second保存的是自己的公钥，但是SSH客户端依然发送默认私钥，即first的私钥， 那么这个验证自然无法通过。 不过，要实现多帐号下的SSH key切换在客户端做一些配置即可。</p>
+<p>首先cd到~/.ssh 使用 ssh-keygen -t -rsa -C ‘second@mail.com’ 生成新的SSH key：id_rsa_second，生成完后将新的SSH public key添加到github。</p>
+<p>ssh-keygen -t -rsa -C ‘second@mail.com’<br>默认SSH只会读取id_rsa，所以为了让SSH识别新的私钥，需要将其添加到SSH agent</p>
+<p>ssh-add ～/.ssh/id_rsa_second<br>该命令如果报错：Could not open a connection to your authentication agent. 无法连接到ssh agent，可执行ssh-agent bash命令后再执行ssh-add命令。</p>
+<p>完成以上步骤后在~/.ssh目录创建config文件，该文件用于配置私钥对应的服务器。内容如下：</p>
+<h1 id="Default-github-user-first-mail-com"><a href="#Default-github-user-first-mail-com" class="headerlink" title="Default github user(first@mail.com)"></a>Default github user(first@mail.com)</h1><p>Host github.com<br>HostName github.com<br>User git<br>IdentityFile C:/Users/username/.ssh/id_rsa</p>
+<h1 id="second-user-second-mail-com"><a href="#second-user-second-mail-com" class="headerlink" title="second user(second@mail.com)"></a>second user(second@mail.com)</h1><p>Host github-second<br>HostName github.com<br>User git<br>IdentityFile C:/Users/username/.ssh/id_rsa_second<br>配置完成后，在连接非默认帐号的github仓库时，远程库的地址要对应地做一些修改， 比如现在添加second帐号下的一个仓库test，则需要这样添加：</p>
+<p>git remote add test git@github-second:second/test.git </p>
+<p>#并非原来的git@github.com:second/test.git<br>这样每次连接都会使用id_rsa_second与服务器进行连接。至此，大功告成！</p>
+<p>注意： github根据配置文件的user.email来获取github帐号显示author信息， 所以对于多帐号用户一定要记得将user.email改为相应的email(second@mail.com)。</p>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您的支持将激励我们前行！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="微信二维码稍后更新" alt="Yang WeChat Pay"/>
+          <p>微信打赏</p>
         </div>
       
       
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="支付宝付款二维码稍后更新" alt="Yang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
+    </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    <footer class="post-footer">
+      
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/25/未命名文件夹/ubuntu-SSH-连接、远程上传下载文件/" itemprop="url">
-              
-                <span itemprop="name">ubuntu SSH 连接、远程上传下载文件</span>
-              
-            </a>
-        
-      </h1>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/13/未命名文件夹/免费下载各种外文科技论文书籍电子版/" rel="next" title="免费下载各种外文科技论文书籍电子版">
+                <i class="fa fa-chevron-left"></i> 免费下载各种外文科技论文书籍电子版
+              </a>
+            
+          </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-25T16:05:12+08:00"
-              content="2016-08-25" >
-          08-25
-        </time>
-      </div>
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/03/未命名文件夹/一台电脑上的git同时使用两个github账户/" rel="prev" title="一台电脑上的git同时使用两个github账户">
+                一台电脑上的git同时使用两个github账户 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
+    <div class="post-spread">
       
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/30/未命名文件夹/设置环境变量永久生效和临时生效/" itemprop="url">
-              
-                <span itemprop="name">设置环境变量永久生效和临时生效</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-30T15:30:56+08:00"
-              content="2016-07-30" >
-          07-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/27/未命名文件夹/高程网格数据篇/" itemprop="url">
-              
-                <span itemprop="name">高程网格数据篇</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-27T16:11:26+08:00"
-              content="2016-07-27" >
-          07-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/26/未命名文件夹/matplotlib的示例：调整字体-设置刻度、坐标、colormap和colorbar/" itemprop="url">
-              
-                <span itemprop="name">matplotlib的示例：调整字体-设置刻度、坐标、colormap和colorbar</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-26T16:36:07+08:00"
-              content="2016-07-26" >
-          07-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/24/未命名文件夹/github+hexo安装与设置/" itemprop="url">
-              
-                <span itemprop="name">github+hexo安装与设置</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-24T11:19:18+08:00"
-              content="2016-07-24" >
-          07-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/24/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-24T11:08:19+08:00"
-              content="2016-07-24" >
-          07-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2016/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2016/">1</a><span class="page-number current">2</span>
-  </nav>
-
-
+    </div>
+  </div>
 
 
           </div>
@@ -620,6 +520,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -639,8 +543,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -676,6 +589,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Default-github-user-first-mail-com"><span class="nav-number">1.</span> <span class="nav-text">Default github user(first@mail.com)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#second-user-second-mail-com"><span class="nav-number">2.</span> <span class="nav-text">second user(second@mail.com)</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -779,11 +703,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
