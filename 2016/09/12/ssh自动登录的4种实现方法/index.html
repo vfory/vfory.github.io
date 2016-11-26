@@ -84,19 +84,16 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="自动ssh/scp方法A为本地主机(即用于控制其他主机的机器) ;B为远程主机(即被控制的机器Server), 假如ip为192.168.60.110;A和B的系统都是Linux在A上运行命令:ssh-keygen -t rsa (连续三次回车,即在本地生成了公钥和私钥,不设置密码)ssh root@192.168.60.110 “mkdir .ssh” (需要输入密码)scp ~/.ssh/i">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://dvmn.com/2016/07/24/hello-world/index.html">
+<meta property="og:title" content="ssh自动登录的4种实现方法">
+<meta property="og:url" content="http://dvmn.com/2016/09/12/ssh自动登录的4种实现方法/index.html">
 <meta property="og:site_name" content="重力在线 OnGra">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-07-24T03:08:19.249Z">
+<meta property="og:description" content="自动ssh/scp方法A为本地主机(即用于控制其他主机的机器) ;B为远程主机(即被控制的机器Server), 假如ip为192.168.60.110;A和B的系统都是Linux在A上运行命令:ssh-keygen -t rsa (连续三次回车,即在本地生成了公钥和私钥,不设置密码)ssh root@192.168.60.110 “mkdir .ssh” (需要输入密码)scp ~/.ssh/i">
+<meta property="og:updated_time" content="2016-09-12T01:30:16.474Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="ssh自动登录的4种实现方法">
+<meta name="twitter:description" content="自动ssh/scp方法A为本地主机(即用于控制其他主机的机器) ;B为远程主机(即被控制的机器Server), 假如ip为192.168.60.110;A和B的系统都是Linux在A上运行命令:ssh-keygen -t rsa (连续三次回车,即在本地生成了公钥和私钥,不设置密码)ssh root@192.168.60.110 “mkdir .ssh” (需要输入密码)scp ~/.ssh/i">
 
 
 
@@ -117,9 +114,9 @@ Quick">
 
 
 
-  <link rel="canonical" href="http://dvmn.com/2016/07/24/hello-world/"/>
+  <link rel="canonical" href="http://dvmn.com/2016/09/12/ssh自动登录的4种实现方法/"/>
 
-  <title> Hello World | 重力在线 OnGra </title>
+  <title> ssh自动登录的4种实现方法 | 重力在线 OnGra </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -389,7 +386,7 @@ Quick">
             
             
               
-                Hello World
+                ssh自动登录的4种实现方法
               
             
           </h1>
@@ -401,8 +398,8 @@ Quick">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-24T11:08:19+08:00" content="2016-07-24">
-              2016-07-24
+            <time itemprop="dateCreated" datetime="2016-09-12T09:29:51+08:00" content="2016-09-12">
+              2016-09-12
             </time>
           </span>
 
@@ -429,15 +426,14 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <ol>
+<li>自动ssh/scp方法<br>A为本地主机(即用于控制其他主机的机器) ;<br>B为远程主机(即被控制的机器Server), 假如ip为192.168.60.110;<br>A和B的系统都是Linux<br>在A上运行命令:<h1 id="ssh-keygen-t-rsa-连续三次回车-即在本地生成了公钥和私钥-不设置密码"><a href="#ssh-keygen-t-rsa-连续三次回车-即在本地生成了公钥和私钥-不设置密码" class="headerlink" title="ssh-keygen -t rsa (连续三次回车,即在本地生成了公钥和私钥,不设置密码)"></a>ssh-keygen -t rsa (连续三次回车,即在本地生成了公钥和私钥,不设置密码)</h1><h1 id="ssh-root-192-168-60-110-“mkdir-ssh”-需要输入密码"><a href="#ssh-root-192-168-60-110-“mkdir-ssh”-需要输入密码" class="headerlink" title="ssh root@192.168.60.110 “mkdir .ssh” (需要输入密码)"></a>ssh root@192.168.60.110 “mkdir .ssh” (需要输入密码)</h1><h1 id="scp-ssh-id-rsa-pub-root-192-168-60-110-ssh-id-rsa-pub-需要输入密码"><a href="#scp-ssh-id-rsa-pub-root-192-168-60-110-ssh-id-rsa-pub-需要输入密码" class="headerlink" title="scp ~/.ssh/id_rsa.pub root@192.168.60.110:.ssh/id_rsa.pub (需要输入密码)"></a>scp ~/.ssh/id_rsa.pub root@192.168.60.110:.ssh/id_rsa.pub (需要输入密码)</h1>在B上的命令:<h1 id="touch-root-ssh-authorized-keys-如果已经存在这个文件-跳过这条"><a href="#touch-root-ssh-authorized-keys-如果已经存在这个文件-跳过这条" class="headerlink" title="touch /root/.ssh/authorized_keys (如果已经存在这个文件, 跳过这条)"></a>touch /root/.ssh/authorized_keys (如果已经存在这个文件, 跳过这条)</h1><h1 id="cat-root-ssh-id-rsa-pub-gt-gt-root-ssh-authorized-keys-将id-rsa-pub的内容追加到authorized-keys-中"><a href="#cat-root-ssh-id-rsa-pub-gt-gt-root-ssh-authorized-keys-将id-rsa-pub的内容追加到authorized-keys-中" class="headerlink" title="cat /root/.ssh/id_rsa.pub &gt;&gt; /root/.ssh/authorized_keys (将id_rsa.pub的内容追加到authorized_keys 中)"></a>cat /root/.ssh/id_rsa.pub &gt;&gt; /root/.ssh/authorized_keys (将id_rsa.pub的内容追加到authorized_keys 中)</h1>回到A机器:<h1 id="ssh-root-192-168-60-110-不需要密码-登录成功"><a href="#ssh-root-192-168-60-110-不需要密码-登录成功" class="headerlink" title="ssh root@192.168.60.110 (不需要密码, 登录成功)"></a>ssh root@192.168.60.110 (不需要密码, 登录成功)</h1></li>
+<li>控制n个机器如上所述自动登录<br>那就需要n对钥匙(密钥和公钥), ssh-keygen 命令可以随意更改钥匙对的名字, 比如:<h1 id="ssh-keygen-t-rsa"><a href="#ssh-keygen-t-rsa" class="headerlink" title="ssh-keygen -t rsa"></a>ssh-keygen -t rsa</h1>Generating public/private rsa key pair.<br>Enter file in which to save the key (/root/.ssh/id_rsa): /root/.ssh/id_rsa_192.168.60.110<br>这样私钥和公钥的名字分别就是: id_rsa_192.168.60.110和 id_rsa_192.168.60.110.pub;然后将 id_rsa_192.168.60.110.pub 文件的内容, 追加到sever的 ~/.ssh/authorized_keys文件中,最后, 在本地用ssh命令的 -i 参数指定本地密钥, 并登录:<h1 id="ssh-i-root-ssh-id-rsa-192-168-60-110-someone-192-168-60-110"><a href="#ssh-i-root-ssh-id-rsa-192-168-60-110-someone-192-168-60-110" class="headerlink" title="ssh -i /root/.ssh/id_rsa_192.168.60.110 someone@192.168.60.110"></a>ssh -i /root/.ssh/id_rsa_192.168.60.110 someone@192.168.60.110</h1>scp也是一样的<h1 id="scp-i-root-ssh-id-rsa-192-168-60-110-filename-someone-192-168-60-110-home-someone"><a href="#scp-i-root-ssh-id-rsa-192-168-60-110-filename-someone-192-168-60-110-home-someone" class="headerlink" title="scp -i /root/.ssh/id_rsa_192.168.60.110 filename someone@192.168.60.110:/home/someone"></a>scp -i /root/.ssh/id_rsa_192.168.60.110 filename someone@192.168.60.110:/home/someone</h1>在文件.bashrc中加下两行，每次做同样的操作就不用敲入这样长的命令了：<br>alias sshcell=’ssh -i /root/.ssh/id_rsa_192.168.60.110 someone@192.168.60.110’<br>alias scpcell=’scp -i /root/.ssh/id_rsa_192.168.60.110 filename someone@192.168.60.110:/home/someone’<br>这样，直接键入一下指令实现ssh和scp自动登录：<h1 id="sshcell"><a href="#sshcell" class="headerlink" title="sshcell"></a>sshcell</h1><h1 id="scpcell"><a href="#scpcell" class="headerlink" title="scpcell"></a>scpcell</h1></li>
+<li>自动ssh/scp脚本<br>如果需要从A，到B，然后才能够到C，那么需要ssh和scp两次，是比较麻烦的。<br>ssh自动登录：<br>#!/usr/bin/expect -f<br>set timeout 30<br>spawn ssh weiqiong@B<br>expect “password:”<br>send “ppppppr”<br>expect “]<em>“<br>send “ssh weiqiong@Cr”<br>expect “password:”<br>send “ppppppr”<br>interact<br>scp从A拷贝文件到C：<br>#!/usr/bin/expect -f<br>set timeout 300<br>set file [lindex $argv 0]<br>spawn scp $file weiqiong@B:/home/weiqiong<br>expect “password:”<br>send “ppppppr”<br>expect “]</em>“<br>spawn ssh weiqiong@B<br>expect “password:”<br>send “ppppppr”<br>expect “]<em>“<br>send “scp $file weiqiong@C:/home/weiqiongr”<br>expect “password:”<br>send “ppppppr”<br>expect “]</em>“<br>exit<br>interact<br>scp从C拷贝文件到A：<br>#!/usr/bin/expect -f<br>set timeout 300<br>set file [lindex $argv 0]<br>spawn ssh weiqiong@B<br>expect “password:”<br>send “ppppppr”<br>expect “]<em>“<br>send “scp weiqiong@C:/home/weiqiong/$file .r”<br>expect “password:”<br>send “ppppppr”<br>expect “]</em>“<br>send “exitr”<br>expect “]*”<br>spawn scp weiqiong@B:/home/weiqiong/$file .<br>expect “password:”<br>send “ppppppr”<br>interact</li>
+<li>建立ssh/scp通道<br>比如说我的机器是A，中间服务器为B，目标服务器是C<br>从A可以ssh到B，从B可以ssh到C，但是A不能直接ssh到C<br>现在展示利用ssh通道技术从A直接传输文件到C</li>
+<li>ssh -L1234:C:22 userid@B<br>input B’s password<br>(1234是本机A的空闲端口，该指令需要A机器上的root用户权限，实际上是在本机1234端口建立了一个通道)</li>
+<li>打开一个新的console，键入：<br>scp -P1234 filename userid@localhost:<br>input C’s password</li>
+</ol>
 
       
     </div>
@@ -484,12 +480,16 @@ Quick">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/09/12/libSM-so-6-cannot-open-shared-object-file-No-such-file-or-directory/" rel="next" title="libSM.so.6: cannot open shared object file: No such file or directory">
+                <i class="fa fa-chevron-left"></i> libSM.so.6: cannot open shared object file: No such file or directory
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/07/24/github+hexo安装与设置/" rel="prev" title="github+hexo安装与设置">
-                github+hexo安装与设置 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/12/Using-Matplotlib-when-DISPLAY-is-undefined/" rel="prev" title="Using Matplotlib when DISPLAY is undefined">
+                Using Matplotlib when DISPLAY is undefined <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -590,7 +590,7 @@ Quick">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh-keygen-t-rsa-连续三次回车-即在本地生成了公钥和私钥-不设置密码"><span class="nav-number">1.</span> <span class="nav-text">ssh-keygen -t rsa (连续三次回车,即在本地生成了公钥和私钥,不设置密码)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh-root-192-168-60-110-“mkdir-ssh”-需要输入密码"><span class="nav-number">2.</span> <span class="nav-text">ssh root@192.168.60.110 “mkdir .ssh” (需要输入密码)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scp-ssh-id-rsa-pub-root-192-168-60-110-ssh-id-rsa-pub-需要输入密码"><span class="nav-number">3.</span> <span class="nav-text">scp ~/.ssh/id_rsa.pub root@192.168.60.110:.ssh/id_rsa.pub (需要输入密码)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#touch-root-ssh-authorized-keys-如果已经存在这个文件-跳过这条"><span class="nav-number">4.</span> <span class="nav-text">touch /root/.ssh/authorized_keys (如果已经存在这个文件, 跳过这条)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cat-root-ssh-id-rsa-pub-gt-gt-root-ssh-authorized-keys-将id-rsa-pub的内容追加到authorized-keys-中"><span class="nav-number">5.</span> <span class="nav-text">cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys (将id_rsa.pub的内容追加到authorized_keys 中)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh-root-192-168-60-110-不需要密码-登录成功"><span class="nav-number">6.</span> <span class="nav-text">ssh root@192.168.60.110 (不需要密码, 登录成功)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh-keygen-t-rsa"><span class="nav-number">7.</span> <span class="nav-text">ssh-keygen -t rsa</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh-i-root-ssh-id-rsa-192-168-60-110-someone-192-168-60-110"><span class="nav-number">8.</span> <span class="nav-text">ssh -i /root/.ssh/id_rsa_192.168.60.110 someone@192.168.60.110</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scp-i-root-ssh-id-rsa-192-168-60-110-filename-someone-192-168-60-110-home-someone"><span class="nav-number">9.</span> <span class="nav-text">scp -i /root/.ssh/id_rsa_192.168.60.110 filename someone@192.168.60.110:/home/someone</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sshcell"><span class="nav-number">10.</span> <span class="nav-text">sshcell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scpcell"><span class="nav-number">11.</span> <span class="nav-text">scpcell</span></a></li></ol></div>
             
           </div>
         </section>
