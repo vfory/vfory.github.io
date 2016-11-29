@@ -84,22 +84,25 @@
 
 
 
-<meta name="description" content="The minimal debian dependencies for anaconda are: sudo apt-get install libsm6 libxrender1 libfontconfig1
-or 
-sudo apt-get install -y python-qt4">
+<meta name="description" content="sudo apt-get install python-qgis
+sudo apt-get build-dep python-gdal
+$ cd gdal-2.1.0/$ ./configure –prefix=/usr/$ make$ sudo make install$ cd swig/python/$ sudo python setup.py install
+$ sudo apt-add-r">
 <meta property="og:type" content="article">
-<meta property="og:title" content="libSM.so.6: cannot open shared object file: No such file or directory">
-<meta property="og:url" content="http://dvmn.com/2016/09/12/libSM-so-6-cannot-open-shared-object-file-No-such-file-or-directory/index.html">
+<meta property="og:title" content="GDAL install">
+<meta property="og:url" content="http://dvmn.com/2016/11/29/GDAL-install/index.html">
 <meta property="og:site_name" content="重力在线 OnGra">
-<meta property="og:description" content="The minimal debian dependencies for anaconda are: sudo apt-get install libsm6 libxrender1 libfontconfig1
-or 
-sudo apt-get install -y python-qt4">
-<meta property="og:updated_time" content="2016-09-12T01:17:36.020Z">
+<meta property="og:description" content="sudo apt-get install python-qgis
+sudo apt-get build-dep python-gdal
+$ cd gdal-2.1.0/$ ./configure –prefix=/usr/$ make$ sudo make install$ cd swig/python/$ sudo python setup.py install
+$ sudo apt-add-r">
+<meta property="og:updated_time" content="2016-11-29T08:04:31.137Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="libSM.so.6: cannot open shared object file: No such file or directory">
-<meta name="twitter:description" content="The minimal debian dependencies for anaconda are: sudo apt-get install libsm6 libxrender1 libfontconfig1
-or 
-sudo apt-get install -y python-qt4">
+<meta name="twitter:title" content="GDAL install">
+<meta name="twitter:description" content="sudo apt-get install python-qgis
+sudo apt-get build-dep python-gdal
+$ cd gdal-2.1.0/$ ./configure –prefix=/usr/$ make$ sudo make install$ cd swig/python/$ sudo python setup.py install
+$ sudo apt-add-r">
 
 
 
@@ -120,9 +123,9 @@ sudo apt-get install -y python-qt4">
 
 
 
-  <link rel="canonical" href="http://dvmn.com/2016/09/12/libSM-so-6-cannot-open-shared-object-file-No-such-file-or-directory/"/>
+  <link rel="canonical" href="http://dvmn.com/2016/11/29/GDAL-install/"/>
 
-  <title> libSM.so.6: cannot open shared object file: No such file or directory | 重力在线 OnGra </title>
+  <title> GDAL install | 重力在线 OnGra </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -392,7 +395,7 @@ sudo apt-get install -y python-qt4">
             
             
               
-                libSM.so.6: cannot open shared object file: No such file or directory
+                GDAL install
               
             
           </h1>
@@ -404,8 +407,8 @@ sudo apt-get install -y python-qt4">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-12T09:15:26+08:00" content="2016-09-12">
-              2016-09-12
+            <time itemprop="dateCreated" datetime="2016-11-29T15:55:42+08:00" content="2016-11-29">
+              2016-11-29
             </time>
           </span>
 
@@ -432,9 +435,32 @@ sudo apt-get install -y python-qt4">
       
 
       
-        <p>The minimal debian dependencies for anaconda are: sudo apt-get install libsm6 libxrender1 libfontconfig1</p>
-<p>or </p>
-<p>sudo apt-get install -y python-qt4</p>
+        <p>sudo apt-get install python-qgis</p>
+<p>sudo apt-get build-dep python-gdal</p>
+<p>$ cd gdal-2.1.0/<br>$ ./configure –prefix=/usr/<br>$ make<br>$ sudo make install<br>$ cd swig/python/<br>$ sudo python setup.py install</p>
+<p>$ sudo apt-add-repository ppa:ubuntugis/ubuntugis-unstable<br>$ sudo apt-get update<br>$ sudo apt-get install python-gdal</p>
+<p>sudo apt-get install libgdal-dev libgdal1h</p>
+<p>sudo apt-get install libgdal-dev</p>
+<p>export CPLUS_INCLUDE_PATH=/usr/include/gdal</p>
+<p>export C_INCLUDE_PATH=/usr/include/gdal</p>
+<p>pip install –no-install GDAL</p>
+<p>pip download GDAL</p>
+<p>python setup.py build_ext –include-dirs=/usr/include/gdal/</p>
+<p>pip install –no-download GDAL</p>
+<p>sudo python setup.py install –include-dirs=/usr/include/gdal</p>
+<p>$ sudo apt-add-repository ppa:ubuntugis/ubuntugis-unstable<br>$ sudo apt-get update<br>$ sudo apt-get install python-gdal</p>
+<p>sudo apt-get install libgdal-dev libgdal1h</p>
+<p>pip install –global-option=build_ext –global-option=”-I/usr/include/gdal” GDAL==<code>gdal-config --version</code></p>
+<p>export CPLUS_INCLUDE_PATH=/usr/include/gdal</p>
+<p>export C_INCLUDE_PATH=/usr/include/gdal</p>
+<p>gdal-config –version</p>
+<p>sudo apt-get install libgdal-dev</p>
+<p>pip install pygdal==1.10.1</p>
+<p>pip freeze|grep pygdal</p>
+<p>pip wheel pygdal==1.10.1.0</p>
+<p>ls wheelhouse</p>
+<p>pip install pygdal==1.10.1.0 -f wheelhouse</p>
+<p>export CPLUS_INCLUDE_PATH=/usr/include/gdal</p>
 
       
     </div>
@@ -481,17 +507,13 @@ sudo apt-get install -y python-qt4">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/08/Intel-MKL-FATAL-ERROR/" rel="next" title="Intel MKL FATAL ERROR">
-                <i class="fa fa-chevron-left"></i> Intel MKL FATAL ERROR
+              <a href="/2016/11/05/Python-Matplotlib-设置x-y坐标轴刻度/" rel="next" title="Python Matplotlib 设置x/y坐标轴刻度">
+                <i class="fa fa-chevron-left"></i> Python Matplotlib 设置x/y坐标轴刻度
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/12/ssh自动登录的4种实现方法/" rel="prev" title="ssh自动登录的4种实现方法">
-                ssh自动登录的4种实现方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
