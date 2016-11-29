@@ -96,7 +96,7 @@ $ sudo apt-add-r">
 sudo apt-get build-dep python-gdal
 $ cd gdal-2.1.0/$ ./configure –prefix=/usr/$ make$ sudo make install$ cd swig/python/$ sudo python setup.py install
 $ sudo apt-add-r">
-<meta property="og:updated_time" content="2016-11-29T08:07:15.005Z">
+<meta property="og:updated_time" content="2016-11-29T08:08:11.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GDAL install">
 <meta name="twitter:description" content="sudo apt-get install python-qgis
@@ -466,6 +466,7 @@ $ sudo apt-add-r">
 <h1 id="Now-install-Python-binding-for-GDAL"><a href="#Now-install-Python-binding-for-GDAL" class="headerlink" title="Now install Python binding for GDAL"></a>Now install Python binding for GDAL</h1><p>export CPLUS_INCLUDE_PATH=/usr/include/gdal<br>export C_INCLUDE_PATH=/usr/include/gdal<br>pip3 install GDAL=1.10.0</p>
 <p>pip install –no-install GDAL</p>
 <p>python setup.py build_ext –include-dirs=/usr/include/gdal<br>pip install –no-download GDAL</p>
+<p>sudo apt-get install libgdal-dev libgdal1h libgdal1-dev<br>Set the compiler flags :<br>export CFLAGS=$(gdal-config –cflags)<br>Install the version corresponding to the system libraries (at the time of writing Ubuntu Trusty is using the 1.10 headers) :<br>pip install GDAL==1.10.0</p>
 <p>sudo mkdir postgis-build</p>
 <p>cd postgis-build</p>
 <hr>
