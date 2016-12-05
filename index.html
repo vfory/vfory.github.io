@@ -388,6 +388,104 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/05/解决error-while-loading-shared-libraries-so-cannot-open-shared-object-file/" itemprop="url">
+                  解决error while loading shared libraries:*.so: cannot open shared object file
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-05T20:48:05+08:00" content="2016-12-05">
+              2016-12-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>报错：<br>error while loading shared libraries: *.so: cannot open shared object file: No such file or directory</p>
+<p>解决方法如下：<br>1.编辑      sudo gedit /etc/ld.so.conf<br>添加上lib库地址，如我的/usr/local/Python2.7/lib，保存文件</p>
+<p>2.执行 /sbin/ldconfig -v命令，如果是非root权限帐号登录，使用 sudo  /sbin/ldconfig -v。</p>
+<p>/etc/ld.so.conf:<br>这个文件记录了编译时使用的动态链接库的路径。<br>默认情况下，编译器只会使用/lib和/usr/lib这两个目录下的库文件<br>如果你安装了某些库，没有指定 –prefix=/usr 这样lib库就装到了/usr/local下，而又没有在/etc/ld.so.conf中添加/usr/local/lib，就会报错了</p>
+<p>ldconfig是个什么东东吧 ：<br>它是一个程序，通常它位于/sbin下，是root用户使用的东东。具体作用及用法可以man ldconfig查到<br>简单的说，它的作用就是将/etc/ld.so.conf列出的路径下的库文件 缓存到/etc/ld.so.cache 以供使用<br>因此当安装完一些库文件，(例如刚安装好glib)，或者修改ld.so.conf增加新的库路径后，需要运行一下/sbin/ldconfig<br>使所有的库文件都被缓存到ld.so.cache中，如果没做，即使库文件明明就在/usr/lib下的，也是不会被使用的，结果编译过程中抱错，缺少xxx库。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/29/GDAL-install/" itemprop="url">
                   GDAL install
                 </a>
@@ -1365,105 +1463,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/08/Intel-MKL-FATAL-ERROR/" itemprop="url">
-                  Intel MKL FATAL ERROR
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-08T09:39:47+08:00" content="2016-09-08">
-              2016-09-08
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Q:<br>I am running a python script and I get this error:</p>
-<p>Intel MKL FATAL ERROR: Cannot load libmkl_avx2.so or libmkl_def.so.<br>Both files are present in the anaconda2/lib directory. How can I fix this error? Thanks.</p>
-<p>A:<br>if you use conda , try with two commands</p>
-<p>conda install nomkl numpy scipy scikit-learn numexpr</p>
-<p>conda remove mkl mkl-service</p>
-<p>It should fix your problem</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1509,7 +1508,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
