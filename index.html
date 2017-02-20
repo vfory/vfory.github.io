@@ -388,6 +388,125 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/20/raspberry/" itemprop="url">
+                  raspberry
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-20T21:16:35+08:00" content="2017-02-20">
+              2017-02-20
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>无SSH情况下为树莓派配置WiFi<br>在内存卡根目录下建个名为“ssh”的文件，放入树莓派重启就会自启ssh了<br>sudo nano /etc/wpa_supplicant/wpa_supplicant.conf<br>network={<br>    ssid=”XXXX”<br>    psk=”XXXX”<br>}<br><a href="https://www.sfantree.com/no_ssh_set_raspberry/" target="_blank" rel="external">https://www.sfantree.com/no_ssh_set_raspberry/</a></p>
+<p>sudo apt-get update  #更新Advanced Package Tool (apt)<br>sudo apt-get upgrade #更新已安装软件<br>sudo rpi-update  #更新固件</p>
+<p>sudo raspi-config #扩展SD卡空间</p>
+<p>sudo passwd  root #获取root 输入密码2次</p>
+<p>sudo passwd –unlockroot #解锁root账户</p>
+<p>#重启wlan0网卡<br>sudo ifdown wlan0<br>sudo ifup waln0</p>
+<p><a href="http://blog.csdn.net/iracer/article/details/51620051" target="_blank" rel="external">http://blog.csdn.net/iracer/article/details/51620051</a></p>
+<p>#设置静态IP<br>sudo nano /etc/network/interfaces  </p>
+<p>allow-hotplug wlan0<br>iface wlan0 inet static<br>wpa-conf/etc/wpa_supplicant/wpa_spplicant.conf<br>address 192.168.0.112<br>netmask 255.255.255.0<br>gateway 192.168.0.1  </p>
+<p>IP设置为静态：static<br>此处固定树莓派的无线网络IP地址为：192.168.0.112<br>子网掩码设置为：255.255.255.0<br>网关为家里路由器的地址：192.168.0.1</p>
+<p>sudo apt-get install ttf-wqy-zenhei #安装中文字体<br>sudo apt-get install scim-pinyin  #安装中文输入法<br>sudo raspi-config  #配置中文操作系统</p>
+<p>#查看分配的IP地址<br>ifconfig</p>
+<p>安装需要的软件<br>dosfstools：fat32分区格式化工具<br>dump：dump&amp; restore 备份工具<br>parted &amp; kpartx：虚拟磁盘工具<br>sudo apt-get install dosfstools<br>sudo apt-get install dump<br>sudo apt-get install parted<br>sudo apt-get install kpartx </p>
+<p>生成新的img文件<br>先使用df-h命令查看下树莓派实际使用空间然后在决定生成文件大小，只需看root后占用的空间，这里已经使用6.7G<br>下面命令生成块大小为1MB，总大小为7500MB的镜像文件<br>sudo dd if=/dev/zero of=raspberrypi.img bs=1MB count=7500 </p>
+<p>分割虚拟磁盘<br>利用parted将刚才生成的虚拟盘分割成两个分区<br>第一个分割区采用FAT32格式，由sector 8192开始到sector 12879，约62.9MB<br>第二个分割区采用EXT4，由sector 122880开始到结束。<br>sudo parted raspberrypi.img –script – mklabel msdos<br>sudo parted raspberrypi.img –script – mkpart primary fat32 8192s 122879s<br>sudo parted raspberrypi.img –script – mkpart primary ext4 122880s -1  </p>
+<p>挂载虚拟磁盘并格式化<br>loopdevice：执行 losetup连接 img文件的 loop device<br>device：执行完 kpartx后，虚拟磁盘代号。<br>partBoot：由 device加上 p1组合而成的 FAT32虚拟磁盘分区。<br>partRoot：由 device加上 p2组合而成的 EXT4 虚拟磁盘分区。<br>loopdevice=<code>sudo losetup -f --show raspberrypi.img</code><br>device=<code>sudo kpartx -va $loopdevice | sed -E &#39;s/.*(loop[0-9])p.*/\1/g&#39; | head -1</code><br>device=”/dev/mapper/${device}”<br>partBoot=”${device}p1”<br>partRoot=”${device}p2”  </p>
+<p>格式化虚拟磁盘分区<br>sudo mkfs.vfat $partBoot<br>sudo mkfs.ext4 $partRoot  </p>
+<p>开始备份<br>fat32虚拟磁盘分区建立好后直接用cp命令备份文件<br>sudo mount -t vfat $partBoot /media<br>sudo cp -rfp /boot/* /media/<br>sudo umount /media  </p>
+<p>ext4linux虚拟磁盘分区用dump &amp; restore备份<br>sudo mount -t ext4 $partRoot /media/<br>cd /media<br>sudo dump -0uaf - / |  sudo restore -rf -<br>cd<br>sudo umount /media  </p>
+<p>卸载虚拟磁盘<br>sudo kpartx -d $loopdevice<br>sudo losetup -d $loopdevice  </p>
+<p>经过以上六步树莓派中的数据文件就全部备份到raspberrypi.img中了，你既可以在Windows中用Win32DiskImager将镜像恢复到SD卡，也可以在Linux用dd还原到SD卡，而且不要求恢复SD卡的大小跟原来的一样，这样就可以很方便的更换SD卡。在home/pi目录下生成了一个raspberrypi.img的备份文件如下：</p>
+<p>一键备份设置<br>cd backup<br>sudo nano backup.sh<br>向打开的文件中拷贝内容如下：</p>
+<p>#!/bin/sh<br>sudo dd if=/dev/zero of=raspberrypi.img bs=1MB count=7500<br>sudo parted raspberrypi.img –script – mklabel msdos<br>sudo parted raspberrypi.img –script – mkpart primary fat32 8192s 122879s<br>sudo parted raspberrypi.img –script – mkpart primary ext4 122880s -1  </p>
+<p>loopdevice=<code>sudo losetup -f --show raspberrypi.img</code><br>device=<code>sudo kpartx -va $loopdevice | sed -E &#39;s/.*(loop[0-9])p.*/\1/g&#39; | head -1</code><br>device=”/dev/mapper/${device}”<br>partBoot=”${device}p1”<br>partRoot=”${device}p2”<br>sudo mkfs.vfat $partBoot<br>sudo mkfs.ext4 $partRoot<br>sudo mount -t vfat $partBoot /media<br>sudo cp -rfp /boot/* /media/<br>sudo umount /media<br>sudo mount -t ext4 $partRoot /media/<br>cd /media<br>sudo dump -0uaf - / | sudo restore -rf -<br>cd<br>sudo umount /media<br>sudo kpartx -d $loopdevice<br>sudo losetup -d $loopdevice  </p>
+<p>按Ctrl+O保存文件，Ctrl+x退出，需要备份时可执行：<br>sudo sh backup.sh  </p>
+<p>cmake -D CMAKE_BUILD_TYPE=RELEASE \<br>    -D CMAKE_INSTALL_PREFIX=/usr/local \<br>    -D INSTALL_PYTHON_EXAMPLES=ON \<br>    -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.2.0/modules \<br>    -D BUILD_EXAMPLES=ON ..</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/05/解决error-while-loading-shared-libraries-so-cannot-open-shared-object-file/" itemprop="url">
                   解决error while loading shared libraries:*.so: cannot open shared object file
                 </a>
@@ -1367,102 +1486,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/12/libSM-so-6-cannot-open-shared-object-file-No-such-file-or-directory/" itemprop="url">
-                  libSM.so.6: cannot open shared object file: No such file or directory
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-12T09:15:26+08:00" content="2016-09-12">
-              2016-09-12
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>The minimal debian dependencies for anaconda are: sudo apt-get install libsm6 libxrender1 libfontconfig1</p>
-<p>or </p>
-<p>sudo apt-get install -y python-qt4</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1508,7 +1531,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1548,7 +1571,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
