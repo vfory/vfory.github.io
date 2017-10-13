@@ -84,22 +84,22 @@
 
 
 
-<meta name="description" content="报错：error while loading shared libraries: *.so: cannot open shared object file: No such file or directory
-解决方法如下：1.编辑      sudo gedit /etc/ld.so.conf添加上lib库地址，如我的/usr/local/Python2.7/lib，保存文件
-2.执行 /sbi">
+<meta name="description" content="默认ubuntu系统已安装了rsync工具，可以使用rsync -h命令测试是否安装，如果没有的安装该工具，可以使用命令：$ aptitude install rsync
+安装。
+Rsync（remote synchronize） 是一个远程数据同步工具，可以使用“Rsync算法”同步本地和远程主机之间的文件。rsync的好处是只同步两个文件不同的部分，相同的部分不在传递。类似于增量备份，这使的在">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决error while loading shared libraries:*.so: cannot open shared object file">
-<meta property="og:url" content="http://dvmn.com/2016/12/05/解决error-while-loading-shared-libraries-so-cannot-open-shared-object-file/index.html">
+<meta property="og:title" content="在ubuntu使用rsync进行服务器同步备份">
+<meta property="og:url" content="http://dvmn.com/2017/10/13/在ubuntu使用rsync进行服务器同步备份/index.html">
 <meta property="og:site_name" content="重力在线 OnGra">
-<meta property="og:description" content="报错：error while loading shared libraries: *.so: cannot open shared object file: No such file or directory
-解决方法如下：1.编辑      sudo gedit /etc/ld.so.conf添加上lib库地址，如我的/usr/local/Python2.7/lib，保存文件
-2.执行 /sbi">
-<meta property="og:updated_time" content="2016-12-05T12:50:30.015Z">
+<meta property="og:description" content="默认ubuntu系统已安装了rsync工具，可以使用rsync -h命令测试是否安装，如果没有的安装该工具，可以使用命令：$ aptitude install rsync
+安装。
+Rsync（remote synchronize） 是一个远程数据同步工具，可以使用“Rsync算法”同步本地和远程主机之间的文件。rsync的好处是只同步两个文件不同的部分，相同的部分不在传递。类似于增量备份，这使的在">
+<meta property="og:updated_time" content="2017-10-13T13:07:57.898Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决error while loading shared libraries:*.so: cannot open shared object file">
-<meta name="twitter:description" content="报错：error while loading shared libraries: *.so: cannot open shared object file: No such file or directory
-解决方法如下：1.编辑      sudo gedit /etc/ld.so.conf添加上lib库地址，如我的/usr/local/Python2.7/lib，保存文件
-2.执行 /sbi">
+<meta name="twitter:title" content="在ubuntu使用rsync进行服务器同步备份">
+<meta name="twitter:description" content="默认ubuntu系统已安装了rsync工具，可以使用rsync -h命令测试是否安装，如果没有的安装该工具，可以使用命令：$ aptitude install rsync
+安装。
+Rsync（remote synchronize） 是一个远程数据同步工具，可以使用“Rsync算法”同步本地和远程主机之间的文件。rsync的好处是只同步两个文件不同的部分，相同的部分不在传递。类似于增量备份，这使的在">
 
 
 
@@ -120,9 +120,9 @@
 
 
 
-  <link rel="canonical" href="http://dvmn.com/2016/12/05/解决error-while-loading-shared-libraries-so-cannot-open-shared-object-file/"/>
+  <link rel="canonical" href="http://dvmn.com/2017/10/13/在ubuntu使用rsync进行服务器同步备份/"/>
 
-  <title> 解决error while loading shared libraries:*.so: cannot open shared object file | 重力在线 OnGra </title>
+  <title> 在ubuntu使用rsync进行服务器同步备份 | 重力在线 OnGra </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -392,7 +392,7 @@
             
             
               
-                解决error while loading shared libraries:*.so: cannot open shared object file
+                在ubuntu使用rsync进行服务器同步备份
               
             
           </h1>
@@ -404,8 +404,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-05T20:48:05+08:00" content="2016-12-05">
-              2016-12-05
+            <time itemprop="dateCreated" datetime="2017-10-13T21:07:29+08:00" content="2017-10-13">
+              2017-10-13
             </time>
           </span>
 
@@ -432,11 +432,13 @@
       
 
       
-        <p>报错：<br>error while loading shared libraries: *.so: cannot open shared object file: No such file or directory</p>
-<p>解决方法如下：<br>1.编辑      sudo gedit /etc/ld.so.conf<br>添加上lib库地址，如我的/usr/local/Python2.7/lib，保存文件</p>
-<p>2.执行 /sbin/ldconfig -v命令，如果是非root权限帐号登录，使用 sudo  /sbin/ldconfig -v。</p>
-<p>/etc/ld.so.conf:<br>这个文件记录了编译时使用的动态链接库的路径。<br>默认情况下，编译器只会使用/lib和/usr/lib这两个目录下的库文件<br>如果你安装了某些库，没有指定 –prefix=/usr 这样lib库就装到了/usr/local下，而又没有在/etc/ld.so.conf中添加/usr/local/lib，就会报错了</p>
-<p>ldconfig是个什么东东吧 ：<br>它是一个程序，通常它位于/sbin下，是root用户使用的东东。具体作用及用法可以man ldconfig查到<br>简单的说，它的作用就是将/etc/ld.so.conf列出的路径下的库文件 缓存到/etc/ld.so.cache 以供使用<br>因此当安装完一些库文件，(例如刚安装好glib)，或者修改ld.so.conf增加新的库路径后，需要运行一下/sbin/ldconfig<br>使所有的库文件都被缓存到ld.so.cache中，如果没做，即使库文件明明就在/usr/lib下的，也是不会被使用的，结果编译过程中抱错，缺少xxx库。</p>
+        <p>默认ubuntu系统已安装了rsync工具，可以使用rsync -h命令测试是否安装，如果没有的安装该工具，可以使用命令：<br>$ aptitude install rsync</p>
+<p>安装。</p>
+<p>Rsync（remote synchronize） 是一个远程数据同步工具，可以使用“Rsync算法”同步本地和远程主机之间的文件。<br>rsync的好处是只同步两个文件不同的部分，相同的部分不在传递。类似于增量备份，<br>这使的在服务器传递备份文件或者同步文件，比起scp工具要省好多时间。<br>具体的用法：<br>1.在本地机器上对两个目录同步<br>$ rsync -zvr filename1 filename2</p>
+<p>上述代码是将filename1中的文件与filename2中的文件同步，如果将filename2中的文件同步到filename1中，修改代码为：<br>$ rsync -zvr filename2 filename1<br>参数说明：<br>-z 开启压缩<br>-v 详情输出<br>-r 表示递归<br>2.使用rsync –a 同步保留时间按标记<br>$ rsync -azv filename1 filename2</p>
+<p>使用上述命令，将filename2中新同步的文件的时间与filename1中的创建的时间相同，<br>它保留符号链接、权限、时间标记、用户名及组名相同。<br>3.从本地同步文件到远程服务器<br>$rsync -avz filename1 ubuntu@192.168.0.1:/home/ubuntu/filename2<br>上述命令是将本地的filename1同步到远程192.168.0.1的主机上。<br>注意：如果远程主机的端口不是默认的22端口，假如是3000端口，上述的命令修改为，<br>$ rsync -avz ‘-e ssh -p 4000’ filename1 ubuntu@192.168.0.1:/home/ubuntu/filename2</p>
+<p>4.将远程服务器的文件同步到本地<br>与步骤3类似，只是将filename1与远程服务器的位置对换一下，<br>$rsync -avz ubuntu@192.168.0.1:/home/ubuntu/filename2 filename1</p>
+<p>同理如果端口不是22，使用以下命令<br>$ rsync -avz ‘-e ssh -p 4000’ ubuntu@192.168.0.1:/home/ubuntu/filename2 filename1</p>
 
       
     </div>
@@ -483,17 +485,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/29/GDAL-install/" rel="next" title="GDAL install">
-                <i class="fa fa-chevron-left"></i> GDAL install
+              <a href="/2017/02/20/raspberry/" rel="next" title="raspberry">
+                <i class="fa fa-chevron-left"></i> raspberry
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/20/raspberry/" rel="prev" title="raspberry">
-                raspberry <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

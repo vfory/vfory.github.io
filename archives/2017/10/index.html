@@ -84,22 +84,15 @@
 
 
 
-<meta name="description" content="报错：error while loading shared libraries: *.so: cannot open shared object file: No such file or directory
-解决方法如下：1.编辑      sudo gedit /etc/ld.so.conf添加上lib库地址，如我的/usr/local/Python2.7/lib，保存文件
-2.执行 /sbi">
-<meta property="og:type" content="article">
-<meta property="og:title" content="解决error while loading shared libraries:*.so: cannot open shared object file">
-<meta property="og:url" content="http://dvmn.com/2016/12/05/解决error-while-loading-shared-libraries-so-cannot-open-shared-object-file/index.html">
+<meta name="description" content="重力在线分布式并行计算服务系统">
+<meta property="og:type" content="website">
+<meta property="og:title" content="重力在线 OnGra">
+<meta property="og:url" content="http://dvmn.com/archives/2017/10/index.html">
 <meta property="og:site_name" content="重力在线 OnGra">
-<meta property="og:description" content="报错：error while loading shared libraries: *.so: cannot open shared object file: No such file or directory
-解决方法如下：1.编辑      sudo gedit /etc/ld.so.conf添加上lib库地址，如我的/usr/local/Python2.7/lib，保存文件
-2.执行 /sbi">
-<meta property="og:updated_time" content="2016-12-05T12:50:30.015Z">
+<meta property="og:description" content="重力在线分布式并行计算服务系统">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决error while loading shared libraries:*.so: cannot open shared object file">
-<meta name="twitter:description" content="报错：error while loading shared libraries: *.so: cannot open shared object file: No such file or directory
-解决方法如下：1.编辑      sudo gedit /etc/ld.so.conf添加上lib库地址，如我的/usr/local/Python2.7/lib，保存文件
-2.执行 /sbi">
+<meta name="twitter:title" content="重力在线 OnGra">
+<meta name="twitter:description" content="重力在线分布式并行计算服务系统">
 
 
 
@@ -120,9 +113,9 @@
 
 
 
-  <link rel="canonical" href="http://dvmn.com/2016/12/05/解决error-while-loading-shared-libraries-so-cannot-open-shared-object-file/"/>
+  <link rel="canonical" href="http://dvmn.com/archives/2017/10/"/>
 
-  <title> 解决error while loading shared libraries:*.so: cannot open shared object file | 重力在线 OnGra </title>
+  <title> 归档 | 重力在线 OnGra </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -143,7 +136,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -371,145 +364,66 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
+
+    <span class="archive-page-counter">
+      
+      
+      
+        
+      
+      嗯..! 目前共计 20 篇日志。 继续努力。
+    </span>
+
     
 
-  
-  
+      
+      
+      
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
+      
         
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+        </div>
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
+            <a class="post-title-link" href="/2017/10/13/在ubuntu使用rsync进行服务器同步备份/" itemprop="url">
               
-                解决error while loading shared libraries:*.so: cannot open shared object file
+                <span itemprop="name">在ubuntu使用rsync进行服务器同步备份</span>
               
-            
-          </h1>
+            </a>
         
+      </h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-05T20:48:05+08:00" content="2016-12-05">
-              2016-12-05
-            </time>
-          </span>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-10-13T21:07:29+08:00"
+              content="2017-10-13" >
+          10-13
+        </time>
+      </div>
 
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>报错：<br>error while loading shared libraries: *.so: cannot open shared object file: No such file or directory</p>
-<p>解决方法如下：<br>1.编辑      sudo gedit /etc/ld.so.conf<br>添加上lib库地址，如我的/usr/local/Python2.7/lib，保存文件</p>
-<p>2.执行 /sbin/ldconfig -v命令，如果是非root权限帐号登录，使用 sudo  /sbin/ldconfig -v。</p>
-<p>/etc/ld.so.conf:<br>这个文件记录了编译时使用的动态链接库的路径。<br>默认情况下，编译器只会使用/lib和/usr/lib这两个目录下的库文件<br>如果你安装了某些库，没有指定 –prefix=/usr 这样lib库就装到了/usr/local下，而又没有在/etc/ld.so.conf中添加/usr/local/lib，就会报错了</p>
-<p>ldconfig是个什么东东吧 ：<br>它是一个程序，通常它位于/sbin下，是root用户使用的东东。具体作用及用法可以man ldconfig查到<br>简单的说，它的作用就是将/etc/ld.so.conf列出的路径下的库文件 缓存到/etc/ld.so.cache 以供使用<br>因此当安装完一些库文件，(例如刚安装好glib)，或者修改ld.so.conf增加新的库路径后，需要运行一下/sbin/ldconfig<br>使所有的库文件都被缓存到ld.so.cache中，如果没做，即使库文件明明就在/usr/lib下的，也是不会被使用的，结果编译过程中抱错，缺少xxx库。</p>
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>您的支持将激励我们前行！</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="微信二维码稍后更新" alt="Yang WeChat Pay"/>
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="支付宝付款二维码稍后更新" alt="Yang Alipay"/>
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
-  </div>
-
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/11/29/GDAL-install/" rel="next" title="GDAL install">
-                <i class="fa fa-chevron-left"></i> GDAL install
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/20/raspberry/" rel="prev" title="raspberry">
-                raspberry <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+    
+
+  </section>
+
+  
+
 
 
           </div>
@@ -517,10 +431,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -540,17 +450,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -586,17 +487,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <p class="post-toc-empty">此文章未包含目录</p>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -700,9 +590,11 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
 
 
   
