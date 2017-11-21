@@ -388,6 +388,101 @@
             
               
                 
+                <a class="post-title-link" href="/2017/11/21/dpkg-和-apt-get损坏修复/" itemprop="url">
+                  dpkg 和 apt-get损坏修复
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-21T17:36:49+08:00" content="2017-11-21">
+              2017-11-21
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用apt-get 或者dpkg安装包时，出现以下报错，尝试了很多办法都没有解决<br>dpkg: error processing package initramfs-tools (–configure):<br> subprocess installed post-installation script returned error exit status 1<br>Errors were encountered while processing:<br> python3<br> python3-apt<br> python3-dbus<br> language-selector-common<br> lsb-release<br> python3-gdbm:amd64<br> python3-commandnotfound<br> python3-distupgrade<br> python3-update-manager<br> python3-gi<br> ufw<br> python3-pkg-resources<br> python3-chardet<br> python3-six<br> python3-urllib3<br> python3-requests<br> python3-virtualenv<br> ssh-import-id<br> dh-python<br> initramfs-tools</p>
+<p>最终使用以下办法解决了：<br>到/var/lib/dpkg/info目录下，删除以上出现包名字开头的文件 sudo rm python*<br>执行：sudo apt-get -f install</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/10/13/在ubuntu使用rsync进行服务器同步备份/" itemprop="url">
                   在ubuntu使用rsync进行服务器同步备份
                 </a>
@@ -1377,119 +1472,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/12/Using-Matplotlib-when-DISPLAY-is-undefined/" itemprop="url">
-                  Using Matplotlib when DISPLAY is undefined
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-12T09:54:23+08:00" content="2016-09-12">
-              2016-09-12
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>import matplotlib</p>
-<h1 id="Force-matplotlib-to-not-use-any-Xwindows-backend"><a href="#Force-matplotlib-to-not-use-any-Xwindows-backend" class="headerlink" title="Force matplotlib to not use any Xwindows backend."></a>Force matplotlib to not use any Xwindows backend.</h1><p>matplotlib.use(‘Agg’)</p>
-<p>or </p>
-<p>This is a configuration issue with matplotlib, the library that QIIME uses for generating plots. You might want to work with your system administrator on this, as I’m not sure if there is a specific reason for this configuration. Your current matplotlib backend is set to qt4agg, which requires there to be an active display, but you don’t have an active display (as indicated by there being no result when you called echo $DISPLAY). </p>
-<p>To get around this, you should first check if you have a matplotlibrc file. You can do this by running:</p>
-<p>python -c “import matplotlib; print(matplotlib.matplotlib_fname())”</p>
-<p>If that returns a filepath, you’ll want to look for a line in that file that contains this:</p>
-<p>backend : qt4agg</p>
-<p>I would created a backup of that file, and then (in the original copy) replace that line with:</p>
-<p>backend : agg</p>
-<p>If you don’t already have a matplotlibrc file, you can create one at $HOME/.matplotlib/matplotlibrc. That file should contain only the line:</p>
-<p>backend : agg</p>
-<p>As I mentioned, you might want to talk with your system administrator about this before making any changes. </p>
-<p>Sorry for the trouble - I realize this is a bit of a complicated fix, but it does seem to be a server/matplotlib configuration issue, not an issue that is specific to QIIME. </p>
-<p>If you could get back to me to let me know if that works, that would be very useful in case other users run into this in the future.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1530,7 +1517,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
