@@ -104,7 +104,7 @@ export PATH=/usr/local/openssl/bin;$PATH
 即把:写成了;
 导致当前环境变量变成了PATH=/usr/local/openssl/bin,不识别原有的$PATH,
 命令行的中大部分命令都不使用,全">
-<meta property="og:updated_time" content="2018-03-10T02:35:01.779Z">
+<meta property="og:updated_time" content="2018-03-10T02:55:05.730Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="修改.bashrc文件PATH变量错误导致系统大部分命令失效">
 <meta name="twitter:description" content="修改.bashrc环境变量,在文件最后添加openssl变量,
@@ -468,7 +468,8 @@ export PATH=/usr/local/openssl/bin;$PATH
 <p>打开当前用户环境变量:<br>(1)打开终端并输入：<br>sudo gedit ~/.bashrc。<br>(2)输入用户密码。这时输入的密码是不可见的。<br>(3)前面的步骤会打开.bashrc文件，在其末尾添加：export PATH=/opt/EmbedSky/4.3.3/bin:$PATH，其中/opt/EmbedSky/4.3.3/bin为你自己需要设置的环境变量路径。<br>(4)使其立即生效，在终端执行：source ~/.bashrc　或者重启电脑即可。</p>
 <p>在终端使用gedit /etc/profile 打开环境变量的文件，然后将自己的环境变量加入到文件之后，用export 执行<br>在终端里面使用(例如 /etc/profile 这个文件)source /etc/profile 来更新环境变量</p>
 <p>visit install</p>
-<p>mkdir visit2.13.0<br>cd visit2.13.0/<br>wget <a href="http://portal.nersc.gov/project/visit/releases/2.13.0/visit2_13_0.linux-x86_64-ubuntu14.tar.gz" target="_blank" rel="external">http://portal.nersc.gov/project/visit/releases/2.13.0/visit2_13_0.linux-x86_64-ubuntu14.tar.gz</a><br>wget <a href="http://portal.nersc.gov/project/visit/releases/2.13.0/visit-install2_13_0" target="_blank" rel="external">http://portal.nersc.gov/project/visit/releases/2.13.0/visit-install2_13_0</a><br>chmod 755 visit-install2_12_3<br>./visit-install2_13_0 “2.13.0” “linux-x86_64-ubuntu14” “/home/yang/bin/visit2_13_0”</p>
+<p>mkdir visit2.13.0<br>cd visit2.13.0/<br>wget <a href="http://portal.nersc.gov/project/visit/releases/2.13.0/visit2_13_0.linux-x86_64-ubuntu14.tar.gz" target="_blank" rel="external">http://portal.nersc.gov/project/visit/releases/2.13.0/visit2_13_0.linux-x86_64-ubuntu14.tar.gz</a><br>wget <a href="http://portal.nersc.gov/project/visit/releases/2.13.0/visit-install2_13_0" target="_blank" rel="external">http://portal.nersc.gov/project/visit/releases/2.13.0/visit-install2_13_0</a><br>chmod 755 visit-install2_13_0<br>./visit-install2_13_0 “2.13.0” “linux-x86_64-ubuntu14” “/home/yang/bin/visit2_13_0”</p>
+<p>chose 1</p>
 <p>vi ~/.bashrc<br>export PATH=$PATH:/home/yang/bin/visit2_13_0/bin</p>
 <p>source ~/.bashrc<br>source ~/.bashrc</p>
 
@@ -524,6 +525,10 @@ export PATH=/usr/local/openssl/bin;$PATH
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/13/gmt-python-install/" rel="prev" title="gmt-python install">
+                gmt-python install <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -591,7 +596,7 @@ export PATH=/usr/local/openssl/bin;$PATH
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

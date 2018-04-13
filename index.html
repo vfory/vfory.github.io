@@ -388,6 +388,204 @@
             
               
                 
+                <a class="post-title-link" href="/2018/04/13/gmt-python-install-1/" itemprop="url">
+                  gmt-python install
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-04-13T11:05:10+08:00" content="2018-04-13">
+              2018-04-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/04/13/gmt-python-install/" itemprop="url">
+                  gmt-python install
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-04-13T11:04:46+08:00" content="2018-04-13">
+              2018-04-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://www.gmtpython.xyz/install.html" target="_blank" rel="external">http://www.gmtpython.xyz/install.html</a></p>
+<p>source ~/.bashrc</p>
+<p>source activate gmt-python</p>
+<p>source deactivate gmt-python</p>
+<p>conda config –add channels conda-forge</p>
+<p>conda create –name gmt-python python=3.6 pip</p>
+<p>source activate gmt-python</p>
+<p>conda install gmt -c conda-forge/label/dev</p>
+<p>conda install numpy pandas xarray</p>
+<p>pip install <a href="https://github.com/GenericMappingTools/gmt-python/archive/master.zip" target="_blank" rel="external">https://github.com/GenericMappingTools/gmt-python/archive/master.zip</a></p>
+<p>conda install pytest pytest-mpl ipython</p>
+<p>conda install ipython ipython-notebook</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/03/10/修改-bashrc文件PATH变量错误导致系统大部分命令失效/" itemprop="url">
                   修改.bashrc文件PATH变量错误导致系统大部分命令失效
                 </a>
@@ -453,7 +651,8 @@
 <p>打开当前用户环境变量:<br>(1)打开终端并输入：<br>sudo gedit ~/.bashrc。<br>(2)输入用户密码。这时输入的密码是不可见的。<br>(3)前面的步骤会打开.bashrc文件，在其末尾添加：export PATH=/opt/EmbedSky/4.3.3/bin:$PATH，其中/opt/EmbedSky/4.3.3/bin为你自己需要设置的环境变量路径。<br>(4)使其立即生效，在终端执行：source ~/.bashrc　或者重启电脑即可。</p>
 <p>在终端使用gedit /etc/profile 打开环境变量的文件，然后将自己的环境变量加入到文件之后，用export 执行<br>在终端里面使用(例如 /etc/profile 这个文件)source /etc/profile 来更新环境变量</p>
 <p>visit install</p>
-<p>mkdir visit2.13.0<br>cd visit2.13.0/<br>wget <a href="http://portal.nersc.gov/project/visit/releases/2.13.0/visit2_13_0.linux-x86_64-ubuntu14.tar.gz" target="_blank" rel="external">http://portal.nersc.gov/project/visit/releases/2.13.0/visit2_13_0.linux-x86_64-ubuntu14.tar.gz</a><br>wget <a href="http://portal.nersc.gov/project/visit/releases/2.13.0/visit-install2_13_0" target="_blank" rel="external">http://portal.nersc.gov/project/visit/releases/2.13.0/visit-install2_13_0</a><br>chmod 755 visit-install2_12_3<br>./visit-install2_13_0 “2.13.0” “linux-x86_64-ubuntu14” “/home/yang/bin/visit2_13_0”</p>
+<p>mkdir visit2.13.0<br>cd visit2.13.0/<br>wget <a href="http://portal.nersc.gov/project/visit/releases/2.13.0/visit2_13_0.linux-x86_64-ubuntu14.tar.gz" target="_blank" rel="external">http://portal.nersc.gov/project/visit/releases/2.13.0/visit2_13_0.linux-x86_64-ubuntu14.tar.gz</a><br>wget <a href="http://portal.nersc.gov/project/visit/releases/2.13.0/visit-install2_13_0" target="_blank" rel="external">http://portal.nersc.gov/project/visit/releases/2.13.0/visit-install2_13_0</a><br>chmod 755 visit-install2_13_0<br>./visit-install2_13_0 “2.13.0” “linux-x86_64-ubuntu14” “/home/yang/bin/visit2_13_0”</p>
+<p>chose 1</p>
 <p>vi ~/.bashrc<br>export PATH=$PATH:/home/yang/bin/visit2_13_0/bin</p>
 <p>source ~/.bashrc<br>source ~/.bashrc</p>
 
@@ -557,7 +756,8 @@
 <p>#openmpi gmsh  已安装 libopenmpi-dev和openmpi-bin<br>sudo aptitude install libopenmpi-dev openmpi-bin openmpi-doc</p>
 <p>sudo apt-get install -y libparmetis-dev<br>sudo apt-get install –reinstall libopenmpi-dev</p>
 <p>In the source directory execute the following (substitute jessie for XXXX):<br>scons -j1 options_file=scons/yang_options.py<br>If you wish to test your build, you can use the following:<br>scons -j1 py_tests options_file=scons/yang_options.py</p>
-<p>run:<br>/home/yang/dddd/src/bin/run-escript grav_netcdf.py<br>pip install pyproj</p>
+<p>run:<br>/home/yang/dddd/src/bin/run-escript grav_netcdf.py </p>
+<p>pip install pyproj</p>
 <p>LAPACK、BLAS的编译<br>　　LAPACK是一个高性能的线性代数计算库。我已经在Ubuntu下编译成功，不想编译它的读者可以直接下载我编译的结果lapack4Bundler.zip，解压后共3个文件，将它们拷贝到Bundler工程的lib文件夹里即可。如果想体验LAPACK的编译过程，则可以参考下面几步：<br>　　首先下载LAPACK编译包，下载地址为： <a href="http://www.netlib.org/lapack/lapack-3.8.0.tar.gz，目前官方放出的最新版是lapack-3.8.0.tgz：" target="_blank" rel="external">http://www.netlib.org/lapack/lapack-3.8.0.tar.gz，目前官方放出的最新版是lapack-3.8.0.tgz：</a><br>wget <a href="http://www.netlib.org/lapack/lapack-3.8.0.tar.gz" target="_blank" rel="external">http://www.netlib.org/lapack/lapack-3.8.0.tar.gz</a><br>　　下载完后解压：<br>tar -xzvf lapack-3.8.0.tar.gz<br>　　在make之前，需要先创建一个make.inc文件，可以直接根据make.inc.example创建：<br>cd lapack-3.8.0<br>cp make.inc.example make.inc<br>　　如果是使用Ubuntu+gfortran，则无须更改make.inc里的内容，否则需要根据系统环境和编译器修改文件里对应的选项。LAPACK依赖BLAS，因此在编译LAPACK前需要提供BLAS包，所幸LAPACK里已经集成了BLAS包，但默认并不编译它。要想编译LAPACK前先编译BLAS，需要修改一下makefile：<br>gedit Makefile<br>　　光标定位到第11行并将内容改为：<br>lib: blaslib lapacklib tmglib<br>　　保存退出，然后开始make整个工程。<br>make<br>　　编译完成后，目录下将生成blas_LINUX.a、lapack_LINUX.a和tmglib_LINUX.a三个文件。</p>
 <p>简单讲述下在 Ubuntu 中安装 OpenMPI 的过程。<br><a href="https://www.open-mpi.org/software/ompi/v3.0/" target="_blank" rel="external">https://www.open-mpi.org/software/ompi/v3.0/</a></p>
 <ol>
@@ -1312,211 +1512,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/03/一台电脑上的git同时使用两个github账户/" itemprop="url">
-                  一台电脑上的git同时使用两个github账户
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-03T17:16:48+08:00" content="2016-10-03">
-              2016-10-03
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>需求：<br>公司有github账号，自己有github账号，想在git上同时使用，两者互不干扰。<br>思路：<br>管理两个SHH key。<br>解决方案：<br>一、生成两个SSH key</p>
-<p>为了举例方便，这里使用“one”和“two”两个账户。下同。<br>$ ssh-keygen -t rsa -C “one@gmail.com”<br>$ ssh-keygen -t rsa -C “two@gmail.com”</p>
-<p>不要一路回车，分别在第一个对话的时候输入重命名（id_rsa_one和id_rsa_two），这样会生成两份包含私钥和公钥的4个文件。</p>
-<p>注1：ssh-keygen是linux命令，可以让两个机器之间使用ssh而不需要用户名和密码<br>注2：一定要在~/.ssh路径下运行命令行，不然生成的文件不会出现在当前目录</p>
-<p>二、添加私钥<br>1、打开ssh-agent<br>(1)如果你是github官方的bash：<br>$ ssh-agent -s<br>(2) 如果你是其它，比如msysgit：<br>$ eval $(ssh-agent -s)<br>2、添加私钥<br>$ ssh-add ~/.ssh/id_rsa_one<br>$ ssh-add ~/.ssh/id_rsa_two<br>三、创建config文件<br>$ touch config<br>此时会出现空的config文件，然后添加如下内容：<br>复制代码</p>
-<h1 id="one-one-gmail-com"><a href="#one-one-gmail-com" class="headerlink" title="one(one@gmail.com)"></a>one(one@gmail.com)</h1><p>  Host one.github.com<br>　　HostName github.com<br>　　PreferredAuthentications publickey<br>　　IdentityFile ~/.ssh/id_rsa_one<br>　　User one</p>
-<h1 id="two-two-gmail-com"><a href="#two-two-gmail-com" class="headerlink" title="two(two@ gmail.com)"></a>two(two@ gmail.com)</h1><p>  Host two.github.com<br>　　HostName github.com<br>　　PreferredAuthentications publickey<br>　　IdentityFile ~/.ssh/id_rsa_two</p>
-<p>　　User two<br>复制代码<br>四、部署SSH key<br>分别登陆两个github账号，进入Personal settings –&gt; SSH and GPG keys：<br>点击”new SSH key”， 把下面两个公钥的内容分别添加到相应的github账号中。<br>五、远程测试【可跳过】<br>$ ssh –T one.github.com<br>$ ssh –T two.github.com<br>六、使用<br>1、clone到本地<br>(1)原来的写法：<br>$ git clone git@github.com: one的用户名/learngit.git<br>(2)现在的写法：<br>$ git clone git@one.github.com: one的用户名/learngit.git<br>$ git clone git@two.github.com: two的用户名/learngit.git<br>2、记得给这个仓库设置局部的用户名和邮箱：<br>$ git config user.name “one_name” ; git config user.email “one_email”<br>$ git config user.name “two_name” ; git config user.email “two_email”<br>3、上述都成功后，会发现钥匙会由灰变绿。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/03/多个github帐号的SSH-key切换/" itemprop="url">
-                  多个github帐号的SSH key切换
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-03T17:11:39+08:00" content="2016-10-03">
-              2016-10-03
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>github使用SSH与客户端连接。如果是单用户（first），生成密钥对后，将公钥保存至github， 每次连接时SSH客户端发送本地私钥（默认~/.ssh/id_rsa）到服务端验证。 单用户情况下，连接的服务器上保存的公钥和发送的私钥自然是配对的。</p>
-<p>但是如果是多用户（first，second），我们在连接到second的帐号时， second保存的是自己的公钥，但是SSH客户端依然发送默认私钥，即first的私钥， 那么这个验证自然无法通过。 不过，要实现多帐号下的SSH key切换在客户端做一些配置即可。</p>
-<p>首先cd到~/.ssh 使用 ssh-keygen -t -rsa -C ‘second@mail.com’ 生成新的SSH key：id_rsa_second，生成完后将新的SSH public key添加到github。</p>
-<p>ssh-keygen -t -rsa -C ‘second@mail.com’<br>默认SSH只会读取id_rsa，所以为了让SSH识别新的私钥，需要将其添加到SSH agent</p>
-<p>ssh-add ～/.ssh/id_rsa_second<br>该命令如果报错：Could not open a connection to your authentication agent. 无法连接到ssh agent，可执行ssh-agent bash命令后再执行ssh-add命令。</p>
-<p>完成以上步骤后在~/.ssh目录创建config文件，该文件用于配置私钥对应的服务器。内容如下：</p>
-<h1 id="Default-github-user-first-mail-com"><a href="#Default-github-user-first-mail-com" class="headerlink" title="Default github user(first@mail.com)"></a>Default github user(first@mail.com)</h1><p>Host github.com<br>HostName github.com<br>User git<br>IdentityFile C:/Users/username/.ssh/id_rsa</p>
-<h1 id="second-user-second-mail-com"><a href="#second-user-second-mail-com" class="headerlink" title="second user(second@mail.com)"></a>second user(second@mail.com)</h1><p>Host github-second<br>HostName github.com<br>User git<br>IdentityFile C:/Users/username/.ssh/id_rsa_second<br>配置完成后，在连接非默认帐号的github仓库时，远程库的地址要对应地做一些修改， 比如现在添加second帐号下的一个仓库test，则需要这样添加：</p>
-<p>git remote add test git@github-second:second/test.git </p>
-<p>#并非原来的git@github.com:second/test.git<br>这样每次连接都会使用id_rsa_second与服务器进行连接。至此，大功告成！</p>
-<p>注意： github根据配置文件的user.email来获取github帐号显示author信息， 所以对于多帐号用户一定要记得将user.email改为相应的email(second@mail.com)。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1562,7 +1557,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
